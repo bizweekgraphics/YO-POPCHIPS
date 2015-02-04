@@ -1,6 +1,6 @@
 {
   "name": "generator-popchips",
-  "version": "1.0.35",
+  "version": "1.0.36",
   "description": "Gulp, browserify, sass, and more. Like a bag of popchips, this generator is addictive, disruptive, and scandalous.",
   "main": "index.js",
   "scripts": {
