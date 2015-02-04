@@ -1,6 +1,6 @@
 {
   "name": "generator-popchips",
-  "version": "1.0.31",
+  "version": "1.0.32",
   "description": "Gulp, browserify, sass, and more. Like a bag of popchips, this generator is addictive, disruptive, and scandalous.",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "glob": "^4.3.5",
     "yeoman-generator": "^0.18.7"
   },
   "install": "node install.js"
