@@ -17,11 +17,16 @@ module.exports = generators.Base.extend({
     ]
 
     this.prompt(prompts, function(answers) {
-      this.appName = answers.app.replace(' ', '');
+      this.appName = answers.app.replace(/ /g, '');
 
       done();
     }.bind(this));
   },
+
+  //NPM renames .gitignore to .npmignore
+  fixGitIgnore: function() {
+    
+  }
 
   copySrc: function() {
     copy.staticFiles(this);
