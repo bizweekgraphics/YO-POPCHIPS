@@ -12,5 +12,5 @@
     "glob": "^4.3.5",
     "yeoman-generator": "^0.18.7"
   },
-  "install": "node install.js"
+  "postinstall": "node install.js"
 }
