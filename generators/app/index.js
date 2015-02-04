@@ -22,12 +22,7 @@ module.exports = generators.Base.extend({
       done();
     }.bind(this));
   },
-
-  //NPM renames .gitignore to .npmignore
-  fixGitIgnore: function() {
-    
-  }
-
+  
   copySrc: function() {
     copy.staticFiles(this);
     copy.templates(this);
