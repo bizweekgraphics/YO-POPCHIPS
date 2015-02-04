@@ -2,6 +2,8 @@
 
 A yeoman generator that scaffolds out a front-end webapp
 
+![Popcorners](http://www.popcorners.com/images/content/flavors/popcorners-kettle.png)
+
 #Features
 * Gulp 
 * Browserify
