@@ -4,8 +4,8 @@ var stylish = require('jshint-stylish');
 
 module.exports = function() {
   gulp.task('jshint', function() {
-    gulp.src(['./src/**/*.js', '!./src/scripts/vendor/*.js','!./src/components/**/*.js'])
+    return gulp.src(['generators/**/*.js', 'test/**/*.js'])
       .pipe(jshint())
-      .pipe(jshint.reporter(stylish));
+      .pipe(jshint.reporter(stylish))
   });
-};
+}

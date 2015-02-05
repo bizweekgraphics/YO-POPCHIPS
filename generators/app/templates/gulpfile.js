@@ -11,6 +11,6 @@ var gulp = require('./gulp')([
   'jshint',
   'fonts',
   'images'
-])
+]);
 
 gulp.task('default', ['images', 'fonts', 'html', 'sass', 'jshint', 'vendor', 'browserify', 'browser-sync', 'watch']);

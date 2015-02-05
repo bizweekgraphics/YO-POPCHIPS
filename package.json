@@ -4,7 +4,7 @@
   "description": "Gulp, browserify, sass, and more. Like a bag of popchips, this generator is addictive, disruptive, and scandalous.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "install": "node install.js"
   },
   "author": "",
   "license": "ISC",
@@ -12,7 +12,10 @@
     "glob": "^4.3.5",
     "yeoman-generator": "^0.18.7"
   },
-  "scripts": {
-    "install": "node install.js"  
+  "devDependencies": {
+    "gulp": "^3.8.10",
+    "gulp-jshint": "^1.9.2",
+    "gulp-mocha": "^2.0.0",
+    "jshint-stylish": "^1.0.0"
   }
 }

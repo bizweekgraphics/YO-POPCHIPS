@@ -14,7 +14,7 @@ module.exports = generators.Base.extend({
         message: 'What is the app name?',
         default: this.appname
       }
-    ]
+    ];
 
     this.prompt(prompts, function(answers) {
       this.appName = answers.app.replace(/ /g, '');

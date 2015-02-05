@@ -13,15 +13,15 @@
      var opts = {
        entries: ['./src/scripts/app.js'],
        debug: true
-     }
+     };
 
      var bundle = browserify(opts)
        .transform({global: true}, deamdify)
        .transform('browserify-shim');       
 
      libs.forEach(function(lib) {
-       bundle.external(lib)
-     })
+       bundle.external(lib);
+     });
 
      return bundle
        .bundle()
@@ -29,7 +29,7 @@
        // .pipe((gStreamify(uglify())))
        .pipe(gulp.dest('./public/build/scripts'))
        .pipe(reload({stream: true}))
-       .pipe((gStreamify(size())))
+       .pipe((gStreamify(size())));
        
-   })
- }
+   });
+ };

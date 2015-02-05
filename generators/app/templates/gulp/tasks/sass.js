@@ -20,4 +20,4 @@ module.exports = function() {
       .pipe(size())
       .pipe(reload({stream: true}));
   });
-}
+};

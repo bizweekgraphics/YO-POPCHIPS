@@ -17,9 +17,9 @@ var copy = {
   templates: function(self) {
     files.templates.forEach(function(filePath) {
       self.template(filePath, filePath);
-    })
+    });
   }
 
-}
+};
 
-module.exports = copy
+module.exports = copy;

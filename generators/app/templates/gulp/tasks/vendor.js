@@ -12,7 +12,7 @@ module.exports = function() {
   gulp.task('vendor', function() {
     var opts = {
       debug: true
-    }
+    };
 
     var bundle = browserify(opts)
       .transform({global: true}, deamdify)
@@ -20,15 +20,15 @@ module.exports = function() {
 
 
     libs.forEach(function(lib) {
-      bundle.require(lib)
-    })
+      bundle.require(lib);
+    });
 
     return bundle
       .bundle()
       .pipe(source('vendor.js'))
       .pipe((gStreamify(uglify())))
       .pipe(gulp.dest('./public/build/scripts'))
-      .pipe((gStreamify(size())))
-  })
+      .pipe((gStreamify(size())));
+  });
 
-}
+};
