@@ -11,10 +11,16 @@ A yeoman generator that scaffolds out a front-end webapp
 * Lints yo scripts
 * Bootstrap for Sass
 * Fontawesome icons
+* Bower
 
 #Getting Started
 * Install: ```npm install -g generator-popchips```
 * Run: ```yo popchips```
 * Run ```gulp``` to build and run preview server
 * Uncomment ```.pipe((gStreamify(uglify())))``` in gulp/tasks/browserify.js and run ```gulp``` to minify scripts
+
+#Things I haven't really created an elegant solution for and might be hard to guess
+* Must install all vendor dependencies to package.json
+* You can install deps via bower but they will not be included in the browserify vendor bundle
+* If you're not using AMD modules or Bower modules in yo project, you can comment out debowerify and deamdify lines in the browserify and vendor gulp task to get easier debugging
 
