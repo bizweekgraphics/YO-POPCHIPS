@@ -21,6 +21,8 @@
     "gulp-jshint": "^1.9.2",
     "gulp-mocha": "^2.0.0",
     "jshint-stylish": "^1.0.0",
-    "path": "^0.11.14"
+    "path": "^0.11.14",
+    "sinon": "^1.12.2",
+    "sinon-chai": "^2.6.0"
   }
 }
