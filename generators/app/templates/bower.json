@@ -11,7 +11,7 @@
     "tests"
   ],
   "dependencies": {
-    "font-awesome": "~4.2.0",
-    "bootstrap-sass-official": "~3.3.1"
+    "font-awesome": "~4.2.0", 
+    <% if (includeBootstrap) { %>"bootstrap-sass-official": "~3.3.1" <% } %>
   }
 }

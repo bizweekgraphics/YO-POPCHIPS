@@ -1,2 +1,2 @@
-@import 'bootstrap';
+<% if(includeBootstrap) { %>@import 'bootstrap';<% } %>
 @import 'font-awesome';

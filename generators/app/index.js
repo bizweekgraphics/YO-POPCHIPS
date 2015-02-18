@@ -13,11 +13,18 @@ module.exports = generators.Base.extend({
         name: 'app',
         message: 'What is the app name?',
         default: this.appname
+      },
+      {
+        type: 'checkbox',
+        name: 'bootstrap',
+        message: 'Include bootstrap?',
+        checked: true
       }
     ];
 
     this.prompt(prompts, function(answers) {
       this.appName = answers.app.replace(/ /g, '');
+      this.includeBootstrap = answers.bootstrap;
 
       done();
     }.bind(this));

@@ -10,18 +10,18 @@
     "gulp/tasks/browserify.js",
     "gulp/tasks/fonts.js",
     "gulp/tasks/html.js",
-    "gulp/tasks/sass.js",
     "gulp/tasks/images.js",
     "gulp/tasks/vendor.js",
     "gulp/tasks/watch.js",
     "gulp/tasks/jshint.js",
-    "src/styles/main.scss",
     "src/scripts/app.js",
     "src/scripts/toph.js"
   ],
   "templates": [
     "package.json",
     "bower.json",
+    "gulp/tasks/sass.js",
+    "src/styles/main.scss",
     "src/index.html"
   ]
 }

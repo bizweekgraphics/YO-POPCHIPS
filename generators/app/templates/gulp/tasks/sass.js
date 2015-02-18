@@ -11,7 +11,7 @@ module.exports = function() {
       .pipe(plumber())
       .pipe(sass({
         includePaths: [
-          './src/components/bootstrap-sass-official/assets/stylesheets',
+          <% if(includeBootstrap) { %>'./src/components/bootstrap-sass-official/assets/stylesheets', <% } %>
           './src/components/font-awesome/scss/',
         ],
       }))

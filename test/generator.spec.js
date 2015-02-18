@@ -15,7 +15,7 @@ describe('popchips:app', function() {
 
   describe('when using the default config', function() {
     //run generator in a temporary folder and create spies
-    before(function(done) {
+    beforeEach(function(done) {
       var self = this;
 
       this.staticFiles = require('./../generators/app/files.json').staticFiles;
@@ -33,8 +33,6 @@ describe('popchips:app', function() {
             return true;
           };
 
-          generator.appname = "test";
-
           self.npmSpy = sinon.spy(generator, 'npmInstall');
           self.bowerSpy = sinon.spy(generator, 'bowerInstall');
 
@@ -45,7 +43,7 @@ describe('popchips:app', function() {
     });
 
     //delete temporary folder
-    after(function() {
+    afterEach(function() {
       fs.remove(this.tempPath, function(err) {
         if(err) return console.error(err);
       });
@@ -69,20 +67,83 @@ describe('popchips:app', function() {
       this.bowerSpy.should.be.called;
     });
 
-    it('inserts prompt responses into templates', function() {
-      // fs.readFile('bower.json', 'utf8', function(err, data) {
-      //   console.log(data) // => hello!
-      // })
+    it('inserts default into templates', function() {
 
       var expectedContent = [
-        ['package.json', /"name": "test"/],
-        ['bower.json', /"name": "test"/]
+        ['package.json', /"name": "tmp"/],
+        ['bower.json', /"name": "tmp"/]
       ]
 
       assert.fileContent(expectedContent);
+    });
+
+    it('does not include unchecked options', function() {
+
+      var unexpectedContent = [
+        ['bower.json', /bootstrap-sass-official/],
+        ['gulp/tasks/sass.js', /bootstrap-sass-official/],
+        ['src/styles/main.scss', /bootstrap/]
+      ];
+
+      assert.noFileContent(unexpectedContent);
+    })
+  });
+
+  describe('when including bootstrap', function() {
+
+    before(function(done) {
+      this.tempPath = path.join(__dirname + './tmp');
+
+      this.runGen = helpers.run(__dirname + './../generators/app')
+        .inDir(this.tempPath)
+        .withPrompt({bootstrap: true})
+        .on('ready', function(generator) {
+
+          generator.npmInstall = function() {
+            return true;
+          };
+
+          generator.bowerInstall = function() {
+            return true;
+          };
+        })
+        .on('end', function() {
+          done();
+        });  
     })
 
+    afterEach(function() {
+      fs.remove(this.tempPath, function(err) {
+        if(err) return console.error(err);
+      });
+    });
 
+    it('includes bootstrap', function() {
 
-  });
+      fs.readFile('gulp/tasks/sass.js', 'utf8', function(err, data) {
+        console.log(data) // => hello!
+      })
+      
+      var expectedContent = [
+        ['bower.json', /bootstrap-sass-official/],
+        ['gulp/tasks/sass.js', /bootstrap-sass-official/],
+        ['src/styles/main.scss', /bootstrap/]
+      ];
+
+      assert.fileContent(expectedContent);
+    })
+  })
 });
+
+
+      // fs.readFile('gulp/tasks/sass.js', 'utf8', function(err, data) {
+      //   console.log(data) // => hello!
+      // })
+
+
+        // .withPrompt({app: 'multiple word test thing'})
+
+
+      // fs.readFile('bower.json', 'utf8', function(err, data) {
+      //   console.log(data) // => hello!
+      // })
