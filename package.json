@@ -5,7 +5,8 @@
   "main": "index.js",
   "repository": "https://github.com/bizweekgraphics/YO-POPCHIPS",
   "scripts": {
-    "install": "node install.js"
+    "install": "node install.js",
+    "test": "gulp test"
   },
   "author": "",
   "license": "ISC",
@@ -20,6 +21,7 @@
     "gulp": "^3.8.10",
     "gulp-jshint": "^1.9.2",
     "gulp-mocha": "^2.0.0",
+    "gulp-util": "^3.0.3",
     "jshint-stylish": "^1.0.0",
     "path": "^0.11.14",
     "sinon": "^1.12.2",

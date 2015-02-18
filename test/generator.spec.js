@@ -1,3 +1,5 @@
+'use strict';
+
 var path = require('path');
 var fs = require('fs-extra');
 var assert = require('assert');
@@ -12,17 +14,17 @@ chai.use(sinonChai);
 describe('popchips:app', function() {
 
   describe('when using the default config', function() {
-    var generatorObject;
-
     //run generator in a temporary folder and create spies
     before(function(done) {
       var self = this;
+
       this.staticFiles = require('./../generators/app/files.json').staticFiles;
       this.tempPath = path.join(__dirname + './tmp');
 
       this.runGen = helpers.run(__dirname + './../generators/app')
         .inDir(this.tempPath)
         .on('ready', function(generator) {
+
           generator.npmInstall = function() {
             return true;
           };
@@ -30,6 +32,8 @@ describe('popchips:app', function() {
           generator.bowerInstall = function() {
             return true;
           };
+
+          generator.appname = "test";
 
           self.npmSpy = sinon.spy(generator, 'npmInstall');
           self.bowerSpy = sinon.spy(generator, 'bowerInstall');
@@ -57,13 +61,26 @@ describe('popchips:app', function() {
       assert.file(templateFiles);
     });
 
-    it('should call npm install', function() {
+    it('calls npm install', function() {
       this.npmSpy.should.be.called;
     });
 
-    it('should call bower install', function() {
+    it('calls bower install', function() {
       this.bowerSpy.should.be.called;
     });
+
+    it('inserts prompt responses into templates', function() {
+      // fs.readFile('bower.json', 'utf8', function(err, data) {
+      //   console.log(data) // => hello!
+      // })
+
+      var expectedContent = [
+        ['package.json', /"name": "test"/],
+        ['bower.json', /"name": "test"/]
+      ]
+
+      assert.fileContent(expectedContent);
+    })
 
 
 

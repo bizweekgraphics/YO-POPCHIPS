@@ -4,4 +4,4 @@ var gulp = require('./gulp')([
   'test'
 ])
 
-gulp.task('default', ['jshint', 'test', 'watch'])
+gulp.task('default', ['jshint', 'test', 'watch']);
