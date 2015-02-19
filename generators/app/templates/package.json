@@ -28,6 +28,6 @@
   "dependencies": {
   },
   "browserify-shim": {
-    "jquery": "global:$"
+    <% if(includejQuery) { %>"jquery": "global:$"<% } %>
   }
 }

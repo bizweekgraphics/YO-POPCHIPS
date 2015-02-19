@@ -12,7 +12,7 @@ module.exports = function() {
       .pipe(sass({
         includePaths: [
           <% if(includeBootstrap) { %>'./src/components/bootstrap-sass-official/assets/stylesheets', <% } %>
-          './src/components/font-awesome/scss/',
+          <% if(includeFontAwesome) { %>'./src/components/font-awesome/scss/', <% } %>
         ],
       }))
       .pipe(minifycss())

@@ -13,6 +13,17 @@ chai.use(sinonChai);
 
 describe('popchips:app', function() {
 
+  var featureContent = [
+    ['bower.json', /bootstrap-sass-official/],
+    ['gulp/tasks/sass.js', /bootstrap-sass-official/],
+    ['src/styles/main.scss', /bootstrap/],
+    ['bower.json', /font-awesome/],
+    ['gulp/tasks/sass.js', /font-awesome/],
+    ['src/styles/main.scss', /font-awesome/],
+    ['src/index.html', /jquery/],
+    ['package.json', /jquery/]
+  ];
+
   describe('when using the default config', function() {
     //run generator in a temporary folder and create spies
     beforeEach(function(done) {
@@ -78,25 +89,18 @@ describe('popchips:app', function() {
     });
 
     it('does not include unchecked options', function() {
-
-      var unexpectedContent = [
-        ['bower.json', /bootstrap-sass-official/],
-        ['gulp/tasks/sass.js', /bootstrap-sass-official/],
-        ['src/styles/main.scss', /bootstrap/]
-      ];
-
-      assert.noFileContent(unexpectedContent);
+      assert.noFileContent(featureContent);
     })
   });
 
-  describe('when including bootstrap', function() {
+  describe('when including features', function() {
 
     before(function(done) {
       this.tempPath = path.join(__dirname + './tmp');
 
       this.runGen = helpers.run(__dirname + './../generators/app')
         .inDir(this.tempPath)
-        .withPrompt({bootstrap: true})
+        .withPrompt({app: 'multiple word test thing', features: ['includeBootstrap', 'includeFontAwesome', 'includejQuery']})
         .on('ready', function(generator) {
 
           generator.npmInstall = function() {
@@ -112,25 +116,18 @@ describe('popchips:app', function() {
         });  
     })
 
-    afterEach(function() {
+    after(function() {
       fs.remove(this.tempPath, function(err) {
         if(err) return console.error(err);
       });
     });
 
     it('includes bootstrap', function() {
+      assert.fileContent(featureContent);
+    });
 
-      fs.readFile('gulp/tasks/sass.js', 'utf8', function(err, data) {
-        console.log(data) // => hello!
-      })
-      
-      var expectedContent = [
-        ['bower.json', /bootstrap-sass-official/],
-        ['gulp/tasks/sass.js', /bootstrap-sass-official/],
-        ['src/styles/main.scss', /bootstrap/]
-      ];
-
-      assert.fileContent(expectedContent);
+    it('has the app name', function() {
+      assert.fileContent([['package.json', /multiplewordtestthing/]])
     })
   })
 });

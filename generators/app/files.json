@@ -2,26 +2,26 @@
   "staticFiles": [
     ".gitignore",
     ".bowerrc",
-    "bower.json",
     "gulpfile.js",
     "gulp/index.js",
     "gulp/utils/libs.js",
     "gulp/tasks/browser-sync.js",
     "gulp/tasks/browserify.js",
-    "gulp/tasks/fonts.js",
     "gulp/tasks/html.js",
     "gulp/tasks/images.js",
     "gulp/tasks/vendor.js",
     "gulp/tasks/watch.js",
     "gulp/tasks/jshint.js",
     "src/scripts/app.js",
-    "src/scripts/toph.js"
+    "src/scripts/toph.js",
+    "src/styles/_layout.scss"
   ],
   "templates": [
     "package.json",
     "bower.json",
     "gulp/tasks/sass.js",
     "src/styles/main.scss",
-    "src/index.html"
+    "src/index.html",
+    "gulp/tasks/fonts.js"
   ]
 }
