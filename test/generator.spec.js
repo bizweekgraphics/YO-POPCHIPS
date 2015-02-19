@@ -21,12 +21,14 @@ describe('popchips:app', function() {
     ['gulp/tasks/sass.js', /font-awesome/],
     ['src/styles/main.scss', /font-awesome/],
     ['src/index.html', /jquery/],
-    ['package.json', /jquery/]
+    ['package.json', /jquery/],
+    ['gulp/tasks/browserify.js', /deamdify/],
+    ['gulp/tasks/vendor.js', /deamdify/]
   ];
 
   describe('when using the default config', function() {
     //run generator in a temporary folder and create spies
-    beforeEach(function(done) {
+    before(function(done) {
       var self = this;
 
       this.staticFiles = require('./../generators/app/files.json').staticFiles;
@@ -54,13 +56,17 @@ describe('popchips:app', function() {
     });
 
     //delete temporary folder
-    afterEach(function() {
+    after(function() {
       fs.remove(this.tempPath, function(err) {
         if(err) return console.error(err);
       });
     });
 
     it('copies over the static files', function() {
+      fs.readFile('gulp/tasks/browserify.js', 'utf8', function(err, data) {
+        console.log(data) // => hello!
+      })
+
       var staticFiles = require('./../generators/app/files.json').staticFiles;
       assert.file(staticFiles);
     });
@@ -100,7 +106,7 @@ describe('popchips:app', function() {
 
       this.runGen = helpers.run(__dirname + './../generators/app')
         .inDir(this.tempPath)
-        .withPrompt({app: 'multiple word test thing', features: ['includeBootstrap', 'includeFontAwesome', 'includejQuery']})
+        .withPrompt({app: 'multiple word test thing', features: ['includeBootstrap', 'includeFontAwesome', 'includejQuery', 'includeAMD']})
         .on('ready', function(generator) {
 
           generator.npmInstall = function() {
@@ -122,7 +128,7 @@ describe('popchips:app', function() {
       });
     });
 
-    it('includes bootstrap', function() {
+    it('includes features', function() {
       assert.fileContent(featureContent);
     });
 

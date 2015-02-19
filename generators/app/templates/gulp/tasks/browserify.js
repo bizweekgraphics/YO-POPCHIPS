@@ -1,7 +1,7 @@
  var gulp = require('gulp');
  var browserify = require('browserify');
  var source = require('vinyl-source-stream');
- var deamdify = require('deamdify');
+ <% if(includeAMD) { %>var deamdify = require('deamdify');<% } %>
  var libs = require('../utils/libs.js');
  var uglify = require('gulp-uglify');
  var gStreamify = require('gulp-streamify');
@@ -16,7 +16,7 @@
      };
 
      var bundle = browserify(opts)
-       .transform({global: true}, deamdify)
+       <% if(includeAMD) { %>.transform({global: true}, deamdify) <% } %>
        .transform('browserify-shim');       
 
      libs.forEach(function(lib) {

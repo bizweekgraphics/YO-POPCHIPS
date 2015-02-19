@@ -33,6 +33,11 @@ module.exports = generators.Base.extend({
             name: 'FontAwesome',
             value: 'includeFontAwesome',
             checked: false
+          },
+          {
+            name: 'AMD',
+            value: 'includeAMD',
+            checked: false
           }
         ]
       }
@@ -50,6 +55,7 @@ module.exports = generators.Base.extend({
       this.includeBootstrap = hasFeature('includeBootstrap');
       this.includejQuery = hasFeature('includejQuery');
       this.includeFontAwesome = hasFeature('includeFontAwesome');
+      this.includeAMD = hasFeature('includeAMD');
 
       done();
     }.bind(this));
