@@ -8,10 +8,11 @@ A yeoman generator that scaffolds out a front-end webapp
 * Gulp 
 * Browserify
 * Scss
-* Lints yo scripts
-* Bootstrap for Sass
-* Fontawesome icons
 * Bower
+* Lints yo scripts
+* Bootstrap for Sass (optional)
+* Fontawesome icons (optional)
+* jQuery (optional)
 
 #Getting Started
 * Install: ```npm install -g generator-popchips```
