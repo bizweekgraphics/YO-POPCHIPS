@@ -83,14 +83,14 @@ describe('popchips:app', function() {
       var expectedContent = [
         ['package.json', /"name": "tmp"/],
         ['bower.json', /"name": "tmp"/]
-      ]
+      ];
 
       assert.fileContent(expectedContent);
     });
 
     it('does not include unchecked options', function() {
       assert.noFileContent(featureContent);
-    })
+    });
   });
 
   describe('when including features', function() {
@@ -114,7 +114,7 @@ describe('popchips:app', function() {
         .on('end', function() {
           done();
         });  
-    })
+    });
 
     after(function() {
       fs.remove(this.tempPath, function(err) {
@@ -127,20 +127,12 @@ describe('popchips:app', function() {
     });
 
     it('has the app name', function() {
-      assert.fileContent([['package.json', /multiplewordtestthing/]])
-    })
-  })
+      assert.fileContent([['package.json', /multiplewordtestthing/]]);
+    });
+  });
 });
 
 
       // fs.readFile('gulp/tasks/sass.js', 'utf8', function(err, data) {
-      //   console.log(data) // => hello!
-      // })
-
-
-        // .withPrompt({app: 'multiple word test thing'})
-
-
-      // fs.readFile('bower.json', 'utf8', function(err, data) {
       //   console.log(data) // => hello!
       // })
